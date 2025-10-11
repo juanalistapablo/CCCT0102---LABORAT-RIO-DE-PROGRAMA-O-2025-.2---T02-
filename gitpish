@@ -1,0 +1,5 @@
+git add .
+
+git commit -m "Atualiza entrada de dados para receber input do usuário"
+
+git push
