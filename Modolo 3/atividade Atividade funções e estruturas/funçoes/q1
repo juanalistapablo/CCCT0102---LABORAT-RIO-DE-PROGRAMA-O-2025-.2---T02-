@@ -1,20 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
-int media(int x[3]);
+float media(int x[3]);
 int main() {
-	int resposta;
-	int notas[3]= {1,2,3};
-	
+	float resposta;
+	int notas[3]= {3,2,3};
 	resposta= media(notas);
-	
-	printf("a media dos valores e : %d",resposta);
+	printf("a media dos valores e : %f",resposta);
 }
 
-int media(int x[3]){
-	int contador = 0;
-	int soma;
+float media(int x[3]){
+	float soma= 0;
 	int i;
-	int resultado;
+	float resultado;
 	
 	for(i=0;i<=3;i++){
 		soma = soma + x[i];
