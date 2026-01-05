@@ -1,0 +1,125 @@
+
+#include <stdio.h>
+
+// Função que recebe dois ponteiros
+void Soma(int *p1, int *p2) {
+    // Dobra o valor das variáveis apontadas
+    *p1 = *p1 * 2;
+    *p2 = *p2 * 2;
+    
+    // Mostra a soma dos novos valores dentro da função
+    printf("Soma dentro da funcao Soma: %d\n", *p1 + *p2);
+}
+
+int main() {
+    int num1, num2;
+    
+    // Declaração dos ponteiros (opcional declarar explicitamente aqui, 
+    // mas solicitado pelo enunciado "crie dois ponteiros")
+    int *ptr1 = &num1;
+    int *ptr2 = &num2;
+
+    printf("--- Exercicio 1 ---\n");
+    printf("Digite o primeiro numero (num1): ");
+    scanf("%d", ptr1); // ou &num1
+    printf("Digite o segundo numero (num2): ");
+    scanf("%d", ptr2); // ou &num2
+
+    // Mostra a soma original
+    printf("Soma na main (antes da funcao): %d\n", num1 + num2);
+
+    // Chama a função passando os ponteiros
+    Soma(ptr1, ptr2);
+
+    // Mostra a soma final na main
+    // Como foi passagem por referência, num1 e num2 foram alterados permanentemente
+    printf("Soma na main (depois da funcao): %d\n", num1 + num2);
+
+    return 0;
+}
+
+#include <stdio.h>
+
+// Função recebe um ponteiro e um inteiro comum
+void Soma(int *p1, int num2) {
+    // Dobra o valor da variável apontada (altera a original)
+    *p1 = *p1 * 2;
+    
+    // Dobra o valor da variável local (NÃO altera a original na main)
+    num2 = num2 * 2;
+    
+    printf("Soma dentro da funcao Soma: %d\n", *p1 + num2);
+}
+
+int main() {
+    int num1, num2;
+    int *ptr1 = &num1;
+
+    printf("\n--- Exercicio 2 ---\n");
+    printf("Digite o primeiro numero (num1): ");
+    scanf("%d", ptr1);
+    printf("Digite o segundo numero (num2): ");
+    scanf("%d", &num2);
+
+    // Soma original
+    printf("Soma na main (antes da funcao): %d\n", num1 + num2);
+
+    // Chama a função passando o ponteiro de num1 e o valor de num2
+    Soma(ptr1, num2);
+
+    // Soma final
+    // num1 dobrou (referência), mas num2 continua o original (valor)
+    printf("Soma na main (depois da funcao): %d\n", num1 + num2);
+
+    return 0;
+}
+
+#include <stdio.h>
+
+#define TAM 5 // Definindo o tamanho do vetor conforme sugestão do enunciado
+
+// Função solicitada no enunciado
+void Escala_Vetor(int *vetor, int escalar) {
+    int i;
+    // Percorre o vetor multiplicando cada posição pelo escalar
+    for (i = 0; i < TAM; i++) {
+        vetor[i] = vetor[i] * escalar; // Aritmética de ponteiros ou indexação funcionam aqui
+    }
+}
+
+int main() {
+    int vetor[TAM];
+    int escalar, i;
+
+    printf("\n--- Exercicio 3 ---\n");
+    
+    // Leitura do vetor
+    printf("Digite os %d valores do vetor:\n", TAM);
+    for (i = 0; i < TAM; i++) {
+        printf("Valor %d: ", i + 1);
+        scanf("%d", &vetor[i]);
+    }
+
+    // Leitura do escalar
+    printf("Digite o valor do escalar: ");
+    scanf("%d", &escalar);
+
+    // Mostra vetor antes
+    printf("Vetor original: ");
+    for (i = 0; i < TAM; i++) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n");
+
+    // Chama a função (o nome do vetor já age como ponteiro para o primeiro elemento)
+    Escala_Vetor(vetor, escalar);
+
+    // Mostra o vetor modificado na main
+    printf("Vetor modificado (multiplicado por %d): ", escalar);
+    for (i = 0; i < TAM; i++) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
